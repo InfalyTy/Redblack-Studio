@@ -1,0 +1,32 @@
+
+**RedBlack Studio** es más que una marca de ropa: es una actitud, una declaración visual de fuerza, contraste y personalidad. Nace de la pasión por el diseño urbano, la moda callejera y la cultura creativa.
+
+## 🖤❤️ Filosofía
+
+Creemos en el poder del contraste. El negro representa la elegancia, la sobriedad y la determinación. El rojo simboliza la energía, la pasión y el fuego interior. Juntos forman la esencia de RedBlack Studio: una marca para quienes viven con intensidad y se expresan sin miedo.
+
+## 👕 Qué hacemos
+
+Diseñamos y producimos ropa con identidad propia:
+
+- **Camisetas** con mensajes y estética urbana.
+- **Sudaderas** que combinan comodidad y actitud.
+- Prendas exclusivas, fabricadas con materiales de calidad y con un diseño que no sigue tendencias: las crea.
+
+## 🎯 Nuestra misión
+
+Inspirar a una nueva generación de personas creativas, libres y decididas. Queremos que cada prenda que llevas de RedBlack Studio sea un reflejo de quién eres.
+
+## 🌍 Comunidad
+
+RedBlack Studio es también una comunidad. Nos inspiran el arte, la música, el deporte urbano y todo aquello que transforma la calle en cultura.
+
+---
+
+RedBlack Studio  
+*Vive en rojo y negro.*
+"""
+
+readme_brand_path = Path("/mnt/data/README-Brand.md")
+readme_brand_path.write_text(readme_brand_content, encoding="utf-8")
+readme_brand_path.name
