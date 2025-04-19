@@ -1,7 +1,7 @@
 
 **RedBlack Studio** es más que una marca de ropa: es una actitud, una declaración visual de fuerza, contraste y personalidad. Nace de la pasión por el diseño urbano, la moda callejera y la cultura creativa.
 
-## 🖤❤️ Filosofía
+## ❤️ Filosofía 🖤
 
 Creemos en el poder del contraste. El negro representa la elegancia, la sobriedad y la determinación. El rojo simboliza la energía, la pasión y el fuego interior. Juntos forman la esencia de RedBlack Studio: una marca para quienes viven con intensidad y se expresan sin miedo.
 
