@@ -6,6 +6,36 @@
   <title>RedBlack Studio</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    #floating-logo {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      width: 60px;
+      height: auto;
+      z-index: 2000;
+      opacity: 0;
+      transform: translateY(-20px);
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease, filter 0.3s ease;
+      animation: pulse 3s infinite;
+    }
+    #floating-logo.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    #floating-logo:hover {
+      filter: brightness(1.5) drop-shadow(0 0 10px #ff0000);
+    }
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    [data-animate].animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
     * {
       margin: 0;
       padding: 0;
@@ -118,7 +148,7 @@
       from { transform: translateY(-50px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
-    @keyframes bounceIn {
+  @keyframes bounceIn {
       0% { opacity: 0; transform: scale(0.3); }
       50% { opacity: 1; transform: scale(1.05); }
       70% { transform: scale(0.9); }
@@ -144,6 +174,7 @@
   </style>
 </head>
 <body>
+  <a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;"><img id="floating-logo" src="https://i.ibb.co/fGzy5P3C/REDBLACK-Studio.png" alt="Logo flotante"></a>
   <header style="height: 100vh; background: linear-gradient(120deg, #ff0000, #000); background-size: 200% 200%; animation: gradientMove 10s ease infinite; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
     <img src="https://i.ibb.co/fGzy5P3C/REDBLACK-Studio.png" alt="Logo RedBlack Studio" style="width: 120px; margin-bottom: 1rem; animation: bounceIn 2s ease;">
     <h1 style="font-size: 4rem; color: #fff; animation: slideDown 1s ease-in-out, pulse 3s infinite;">RedBlack Studio</h1>
@@ -160,14 +191,14 @@
     </select>
   </nav>
 
-  <section id="about">
+  <section id="about" data-animate>
     <h2 class="section-title">Sobre Nosotros</h2>
     <p style="max-width: 800px; margin: 0 auto; text-align: center;">
       RedBlack Studio nace de la pasión por el diseño urbano y la cultura callejera.
     </p>
   </section>
 
-  <section id="products">
+  <section id="products" data-animate>
     <h2 class="section-title">Colección Destacada</h2>
     <div class="products">
       <div class="product" id="product1">Camiseta Negra RB</div>
@@ -175,14 +206,14 @@
     </div>
   </section>
 
-  <section id="lookbook">
+  <section id="lookbook" data-animate>
     <h2 class="section-title">Lookbook</h2>
     <p style="max-width: 800px; margin: 0 auto; text-align: center;">
       Inspiración urbana desde el corazón de la ciudad. Campañas visuales que muestran el alma de RedBlack Studio.
     </p>
   </section>
 
-  <footer id="footer-text">
+  <footer id="footer-text" data-animate>
     © 2025 RedBlack Studio. Todos los derechos reservados.
   </footer>
 
@@ -257,6 +288,25 @@
       }
     });
   }
-  </script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animated');
+    }
+  });
+}, {
+  threshold: 0.1
+});
+document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+const floatingLogo = document.getElementById('floating-logo');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > window.innerHeight * 0.6) {
+    floatingLogo.classList.add('visible');
+  } else {
+    floatingLogo.classList.remove('visible');
+  }
+});
+</script>
 </body>
 </html>
