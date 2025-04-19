@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RedBlack Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    nav {
+      background-color: #111;
+      padding: 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      animation: slideDown 1s ease-in-out;
+    }
+    nav a {
+      position: relative;
+      display: inline-block;
+      color: #fff;
+      margin: 0 1rem;
+      font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      padding: 0.5rem;
+      background: none;
+      text-decoration: none;
+      transition: color 0.3s, transform 0.3s;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #ff0000;
+      transition: width 0.4s ease;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    nav select {
+      position: relative;
+      display: inline-block;
+      color: #fff;
+      background-color: #111;
+      font-weight: bold;
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      padding: 0.5rem 2rem 0.5rem 0.5rem;
+      margin: 0 1rem;
+      appearance: none;
+      cursor: pointer;
+      background-image: url('data:image/svg+xml;utf8,<svg fill="%23fff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 0.5rem center;
+      background-size: 1rem;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #ff0000;
+      transition: all 0.3s ease;
+      animation: glow 2s infinite alternate ease-in-out;
+    }
+    nav select:hover {
+      color: #ff0000;
+      transform: scale(1.05);
+    }
+    section {
+      padding: 4rem 2rem;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #ff0000;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .product {
+      background-color: #111;
+      padding: 1rem;
+      border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .product:hover {
+      transform: rotate(-1deg) scale(1.05);
+      box-shadow: 0 0 20px #ff0000;
+    }
+    footer {
+      background-color: #111;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888;
+    }
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px #ff0000; }
+      100% { box-shadow: 0 0 20px #ff0000; }
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes bounceIn {
+      0% { opacity: 0; transform: scale(0.3); }
+      50% { opacity: 1; transform: scale(1.05); }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
+<body>
+  <header style="height: 100vh; background: linear-gradient(120deg, #ff0000, #000); background-size: 200% 200%; animation: gradientMove 10s ease infinite; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+    <img src="https://i.ibb.co/fGzy5P3C/REDBLACK-Studio.png" alt="Logo RedBlack Studio" style="width: 120px; margin-bottom: 1rem; animation: bounceIn 2s ease;">
+    <h1 style="font-size: 4rem; color: #fff; animation: slideDown 1s ease-in-out, pulse 3s infinite;">RedBlack Studio</h1>
+    <p style="font-size: 1.5rem; color: #ddd; margin-top: 1rem; animation: fadeIn 2s ease-in 1s forwards, float 6s ease-in-out infinite;">Expresa tu estilo. Vive en rojo y negro.</p>
+  </header>
+  <nav>
+    <a href="#about">Sobre Nosotros</a>
+    <a href="#products">Colección</a>
+    <a href="#lookbook">Lookbook</a>
+    <select id="language-selector" onchange="changeLanguage(this.value)">
+      <option value="es" selected>Español</option>
+      <option value="en">English</option>
+      <option value="ca">Català</option>
+    </select>
+  </nav>
+
+  <section id="about">
+    <h2 class="section-title">Sobre Nosotros</h2>
+    <p style="max-width: 800px; margin: 0 auto; text-align: center;">
+      RedBlack Studio nace de la pasión por el diseño urbano y la cultura callejera.
+    </p>
+  </section>
+
+  <section id="products">
+    <h2 class="section-title">Colección Destacada</h2>
+    <div class="products">
+      <div class="product" id="product1">Camiseta Negra RB</div>
+      <div class="product" id="product2">Sudadera Roja Studio</div>
+    </div>
+  </section>
+
+  <section id="lookbook">
+    <h2 class="section-title">Lookbook</h2>
+    <p style="max-width: 800px; margin: 0 auto; text-align: center;">
+      Inspiración urbana desde el corazón de la ciudad. Campañas visuales que muestran el alma de RedBlack Studio.
+    </p>
+  </section>
+
+  <footer id="footer-text">
+    © 2025 RedBlack Studio. Todos los derechos reservados.
+  </footer>
+
+  <script>
+  function changeLanguage(lang) {
+    const translations = {
+      es: {
+        aboutTitle: "Sobre Nosotros",
+        aboutText: "RedBlack Studio nace de la pasión por el diseño urbano y la cultura callejera.",
+        productsTitle: "Colección Destacada",
+        lookbookTitle: "Lookbook",
+        lookbookText: "Inspiración urbana desde el corazón de la ciudad. Campañas visuales que muestran el alma de RedBlack Studio.",
+        footer: "© 2025 RedBlack Studio. Todos los derechos reservados.",
+        navAbout: "Sobre Nosotros",
+        navProducts: "Colección",
+        navLookbook: "Lookbook",
+        product1: "Camiseta Negra RB",
+        product2: "Sudadera Roja Studio"
+      },
+      en: {
+        aboutTitle: "About Us",
+        aboutText: "RedBlack Studio was born from a passion for urban design and street culture.",
+        productsTitle: "Featured Collection",
+        lookbookTitle: "Lookbook",
+        lookbookText: "Urban inspiration from the heart of the city. Visual campaigns showing RedBlack Studio's soul.",
+        footer: "© 2025 RedBlack Studio. All rights reserved.",
+        navAbout: "About Us",
+        navProducts: "Collection",
+        navLookbook: "Lookbook",
+        product1: "Black T-shirt RB",
+        product2: "Red Hoodie Studio"
+      },
+      ca: {
+        aboutTitle: "Sobre Nosaltres",
+        aboutText: "RedBlack Studio neix de la passió pel disseny urbà i la cultura del carrer.",
+        productsTitle: "Col·lecció Destacada",
+        lookbookTitle: "Lookbook",
+        lookbookText: "Inspiració urbana des del cor de la ciutat. Campanyes visuals que mostren l'ànima de RedBlack Studio.",
+        footer: "© 2025 RedBlack Studio. Tots els drets reservats.",
+        navAbout: "Sobre Nosaltres",
+        navProducts: "Col·lecció",
+        navLookbook: "Lookbook",
+        product1: "Samarreta Negra RB",
+        product2: "Dessuadora Vermella Studio"
+      }
+    };
+
+    const t = translations[lang];
+    const fadeElements = [
+      ["#about .section-title", t.aboutTitle],
+      ["#about p", t.aboutText],
+      ["#products .section-title", t.productsTitle],
+      ["#lookbook .section-title", t.lookbookTitle],
+      ["#lookbook p", t.lookbookText],
+      ["#footer-text", t.footer],
+      ["nav a[href='#about']", t.navAbout],
+      ["nav a[href='#products']", t.navProducts],
+      ["nav a[href='#lookbook']", t.navLookbook],
+      ["#product1", t.product1],
+      ["#product2", t.product2]
+    ];
+
+    fadeElements.forEach(([selector, newText]) => {
+      const el = document.querySelector(selector);
+      if (el) {
+        el.style.transition = "opacity 0.3s";
+        el.style.opacity = 0;
+        setTimeout(() => {
+          el.textContent = newText;
+          el.style.opacity = 1;
+        }, 300);
+      }
+    });
+  }
+  </script>
+</body>
+</html>
