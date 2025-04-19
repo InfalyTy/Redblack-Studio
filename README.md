@@ -24,9 +24,4 @@ RedBlack Studio es también una comunidad. Nos inspiran el arte, la música, el 
 ---
 
 RedBlack Studio  
-*Vive en rojo y negro.*
-"""
-
-readme_brand_path = Path("/mnt/data/README-Brand.md")
-readme_brand_path.write_text(readme_brand_content, encoding="utf-8")
-readme_brand_path.name
+**Vive en rojo y negro.**
